@@ -334,16 +334,13 @@ function SettingsPageContent() {
   const copyShareLink = () => {
     if (!settings) return;
     const link = `${window.location.origin}/u/${settings.github_login}`;
-    navigator.clipboard
-      .writeText(link)
-      .then(() => {
-        setCopied(true);
-        toast.success("Link copied successfully!");
-        setTimeout(() => setCopied(false), 2000);
-      })
-      .catch(() => {
-        toast.error("Failed to copy link");
-      });
+    navigator.clipboard.writeText(link).then(() => {
+      setCopied(true);
+      toast.success("Link copied successfully!");
+      setTimeout(() => setCopied(false), 2000);
+    }).catch(() => {
+      toast.error("Failed to copy link");
+    });
   };
 
   const handleRemoveAccount = async (githubId: string) => {
@@ -425,8 +422,22 @@ function SettingsPageContent() {
               Manage your profile and preferences
             </p>
           </div>
-        </div>
+        <div className="mb-8">
+          <Link
+            href="/dashboard"
+            className="inline-flex items-center text-sm text-[var(--muted-foreground)] hover:text-[var(--foreground)] mb-4 transition-colors"
+          >
+            ← Back to Dashboard
+          </Link>
 
+          <h1 className="text-3xl font-bold text-[var(--foreground)]">
+            Settings
+          </h1>
+
+          <p className="mt-2 text-[var(--muted-foreground)]">
+            Manage your profile and preferences
+          </p>
+        </div>
         {statusMessage && (
           <div
             className={`mb-6 rounded-xl border p-4 text-sm ${
@@ -462,16 +473,14 @@ function SettingsPageContent() {
                   className="sr-only"
                 />
                 <div
-                  className={`block w-10 h-6 rounded-full transition-colors ${
-                    settings.is_public
+                  className={`block w-10 h-6 rounded-full transition-colors ${settings.is_public
                       ? "bg-[var(--accent)]"
                       : "bg-[var(--control)]"
-                  }`}
+                    }`}
                 />
                 <div
-                  className={`absolute left-1 top-1 h-4 w-4 rounded-full bg-[var(--card)] transition-transform ${
-                    settings.is_public ? "translate-x-4" : ""
-                  }`}
+                  className={`absolute left-1 top-1 h-4 w-4 rounded-full bg-[var(--card)] transition-transform ${settings.is_public ? "translate-x-4" : ""
+                    }`}
                 />
               </div>
             </label>
@@ -592,16 +601,14 @@ function SettingsPageContent() {
                   className="sr-only"
                 />
                 <div
-                  className={`block h-6 w-10 rounded-full transition-colors ${
-                    settings.leaderboard_opt_in
+                  className={`block h-6 w-10 rounded-full transition-colors ${settings.leaderboard_opt_in
                       ? "bg-[var(--accent)]"
                       : "bg-[var(--control)]"
-                  }`}
+                    }`}
                 />
                 <div
-                  className={`absolute left-1 top-1 h-4 w-4 rounded-full bg-[var(--card)] transition-transform ${
-                    settings.leaderboard_opt_in ? "translate-x-4" : ""
-                  }`}
+                  className={`absolute left-1 top-1 h-4 w-4 rounded-full bg-[var(--card)] transition-transform ${settings.leaderboard_opt_in ? "translate-x-4" : ""
+                    }`}
                 />
               </div>
             </label>
